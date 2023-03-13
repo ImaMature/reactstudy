@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>테스트 페이지</h1>
+    <script>
+      //map()
+      const n = [1, 2, 3, 4, 5];
+      const rs = n.map((e) => e * 2);
+      console.log(rs);
+
+      //slice()
+      console.log(`slice() 기본 : ${n.slice(0, 2)}`); //기존 배열 건드리지 않음
+
+      console.log(
+        `slice()와 concat() 조합 : ${n.slice(0, 2).concat(n.slice(3, 5))}`
+      );
+
+      //filter()
+      console.log(`n이 3보다 큰 거만 보여줘 : ${n.filter((n) => n > 3)}`);
+      //필터로 인해 배열 내부의 값이 걸러짐
+
+      console.log(`n이 3이 아닌 거 보여줘 : ${n.filter((n) => n != 3)}`);
+
+      //spread(전개) 연산자
+      const singerOne = ["청하", "여자아이들", "우주소녀"];
+      const singerTwo = ["홍대광", "악동뮤지션", "볼빨간사춘기"];
+      const combinedOne = singerOne.concat(singerTwo);
+      const combinedTwo = [...singerOne, "BTS", ...singerTwo];
+      console.log(`combinedOne : ${combinedOne}`);
+      console.log(`combinedTwo : ${combinedTwo}`);
+
+      //concat()
+      const array = [1, 2];
+      let result = array.concat(3);
+      console.log(`array : ${array}`); // [1, 2]
+      console.log(`result : ${result}`); // [1, 2, 3]\
+
+      //forEach()
+      const items = ["one", "two"];
+
+      items.forEach((i) => {
+        console.log(`items : ${i}`);
+      });
+      //map을 이용한 forEach()
+      const m = [1, 2, 3];
+      const k = m.map((i) => i + 10);
+      console.log(`k 값 : ${k}`);
+    </script>
+  </body>
+</html>

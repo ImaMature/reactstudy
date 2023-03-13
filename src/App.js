@@ -1,10 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
+   let list = [1, 2, 3];
    return (
       <div class="app-style">
-         <h1>헤딩 태그</h1>
+         <h1>
+            {list.map(i => (
+               <div>{i}</div>
+            ))}
+         </h1>
       </div>
    );
 }
