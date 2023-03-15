@@ -79,5 +79,31 @@ function Counter() {
       </div>
    );
 }
+function A() {
+   console.log("app 실행됨");
+   const [users, setUsers] = useState([{ id: 4, name: "이동욱" }]); //레퍼런스 변경되야 동작
 
-export { MapTest, NumberAdd, Counter };
+   //기본 데이터
+   let sample = [
+      { id: 1, name: "김성근" },
+      { id: 2, name: "선동열" },
+      { id: 3, name: "박진만" },
+   ];
+   const download = () => {
+      const a_data = sample.concat({ id: 4, name: "김종국" }); //추가할 데이터
+      setUsers(a_data); //깊은 복사로 레퍼런스(메모리 참조 값) 변경
+   };
+   return (
+      <div>
+         <hr></hr>
+         <button onClick={download}>download</button>
+         {users.map((u, i) => (
+            <p key={u.id}>
+               {u.id}, {u.name}
+            </p>
+         ))}
+      </div>
+   );
+}
+
+export { MapTest, NumberAdd, Counter, A };

@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { MapTest, NumberAdd, Counter } from "./Test";
+import { MapTest, NumberAdd, Counter, A } from "./Test";
 
 function App() {
    return (
@@ -8,6 +8,7 @@ function App() {
          <MapTest />
          <NumberAdd />
          <Counter />
+         <A />
       </div>
    );
 }
