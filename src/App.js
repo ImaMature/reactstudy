@@ -1,10 +1,12 @@
 import "./App.css";
-import MapTest from "./Test";
+
+import { MapTest, NumberAdd } from "./Test";
 
 function App() {
    return (
-      <div class="app-style">
+      <div className="app-style">
          <MapTest />
+         <NumberAdd />
       </div>
    );
 }
