@@ -44,10 +44,10 @@ function MapTest() {
 
 function NumberAdd() {
    //let uknown_Num = 0; 상태값이 아님
-   const [uknown_Num, a] = useState(0); //React 안에 hooks 라이브러리 상태 값 = UI에 동기화되어있다는 것
+   const [uknown_Num, setUknown_Num] = useState(0); //React 안에 hooks 라이브러리 상태 값 = UI에 동기화되어있다는 것
 
    const testAdd = () => {
-      a(uknown_Num + 1); //변수 값 변경 시 ++이 아니라 이렇게 사용해야 함
+      setUknown_Num(uknown_Num + 1); //변수 값 변경 시 ++이 아니라 이렇게 사용해야 함
       console.log("uknown_Num", uknown_Num);
    };
 
@@ -62,4 +62,22 @@ function NumberAdd() {
    );
 }
 
-export { MapTest, NumberAdd };
+function Counter() {
+   const [non, setNon] = useState(0);
+
+   const onIncrease = () => {
+      setNon(non + 1);
+   };
+   const onDecrease = () => {
+      setNon(non - 1);
+   };
+   return (
+      <div>
+         <h1>{non}</h1>
+         <button onClick={onIncrease}>+1</button>
+         <button onClick={onDecrease}>-1</button>
+      </div>
+   );
+}
+
+export { MapTest, NumberAdd, Counter };
