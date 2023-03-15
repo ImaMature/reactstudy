@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function MapTest() {
    //배열 반복문으로 출력하기
    const menus = [
@@ -41,17 +43,19 @@ function MapTest() {
 }
 
 function NumberAdd() {
-   let ss = 0;
+   //let uknown_Num = 0; 상태값이 아님
+   const [uknown_Num, a] = useState(0); //React 안에 hooks 라이브러리 상태 값 = UI에 동기화되어있다는 것
+
    const testAdd = () => {
-      ss++;
-      console.log("ss", ss);
+      a(uknown_Num + 1); //변수 값 변경 시 ++이 아니라 이렇게 사용해야 함
+      console.log("uknown_Num", uknown_Num);
    };
 
    return (
       <div>
          <hr></hr>
          <div>
-            <p>numbers : {ss}</p>
+            <p>numbers : {uknown_Num}</p>
             <button onClick={testAdd}>더하기</button>
          </div>
       </div>
