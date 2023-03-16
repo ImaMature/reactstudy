@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function MapTest() {
    //배열 반복문으로 출력하기
@@ -19,8 +19,8 @@ function MapTest() {
       { id: 2, name: "bbb" },
       { id: 3, name: "ccc" },
    ];
-   const newName = { name: "kkk" };
-   const listNo1 = { ...list_A[1], ...newName }; //배열 특정 인덱스만 값 바꾸기
+   //const newName = { name: "kkk" };
+   //const listNo1 = { ...list_A[1], ...newName }; //배열 특정 인덱스만 값 바꾸기
    //console.log(list_A);
    //console.log(listNo1);
    const updateNameDto = {
@@ -79,6 +79,7 @@ function Counter() {
       </div>
    );
 }
+//useState?
 function A() {
    console.log("app 실행됨");
    const [users, setUsers] = useState([{ id: 4, name: "이동욱" }]); //레퍼런스 변경되야 동작
@@ -106,4 +107,46 @@ function A() {
    );
 }
 
-export { MapTest, NumberAdd, Counter, A };
+//useEffect?
+function UseEffectTest() {
+   const [data, setData] = useState(0);
+   const [search, setSearch] = useState(0);
+   //데이터를 다운받는다고 가정
+   const download = () => {
+      let downData = 5;
+      setData(downData); //useEffect 한번 실행됨
+   };
+   // 실행 시점
+   // (1) 함수가 최초 실행될 때 (마운트 될 때)
+   // (2) 상태 변수가 변경될 때 (deps에 등록되어있을 때만)
+
+   useEffect(() => {
+      //useEffect(effect 함수, 디펜던시 함수(배열))
+      console.log("useEffect 발동");
+      download();
+   }, [search]);
+   // 가장 처음 렌더링 될 때 한번만 실행하고 싶을 때엔 deps에 빈 배열을 넣기
+   // 배열을 생략하면 리렌더링 될 때마다 useEffect가 실행됨
+   // deps에는 다시 그릴 유형의 함수(useState 배열의 현재 상태)가 들어가야 함
+
+   return (
+      <div>
+         <hr></hr>
+         <button
+            onClick={() => {
+               setSearch(2);
+            }}>
+            검색
+         </button>
+         <p>data : {data}</p>
+         <button
+            onClick={() => {
+               setData(data + 1);
+            }}>
+            눌러봐유
+         </button>
+      </div>
+   );
+}
+
+export { UseEffectTest };

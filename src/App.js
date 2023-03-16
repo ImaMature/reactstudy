@@ -1,14 +1,11 @@
 import "./App.css";
 
-import { MapTest, NumberAdd, Counter, A } from "./Test";
+import { UseEffectTest } from "./Test";
 
 function App() {
    return (
       <div>
-         <MapTest />
-         <NumberAdd />
-         <Counter />
-         <A />
+         <UseEffectTest />
       </div>
    );
 }
