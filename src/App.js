@@ -1,11 +1,16 @@
 import "./App.css";
 
-import { UseEffectTest } from "./Test";
+import { UseEffectTest, UseMemoMan, UseRefTest } from "./Test";
 
 function App() {
    return (
       <div>
-         <UseEffectTest />
+         {/*<UseEffectTest />
+         <hr></hr>
+         <UseMemoMan />
+         <hr></hr>
+   */}
+         <UseRefTest />
       </div>
    );
 }

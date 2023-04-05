@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useMemo, useRef, useState } from "react";
 
 function MapTest() {
    //배열 반복문으로 출력하기
@@ -149,4 +149,96 @@ function UseEffectTest() {
    );
 }
 
-export { UseEffectTest };
+function UseMemoMan() {
+   const [list, setList] = useState([1, 2, 3, 4]);
+   const [str, setStr] = useState("합계");
+
+   const getAddResult = () => {
+      //모든 값 더하기
+      let sum = 0;
+      list.forEach(i => (sum = sum + i));
+      console.log("sum : ", sum);
+      return sum;
+   };
+
+   const MemoUseResult = useMemo(() => getAddResult(), [list]);
+   //useMemo(기억할 함수, deps 배열)
+   // deps 배열 안에 넣은 내용이 바뀌면, 등록한 함수를 호출해서 값을 연산해주고
+   // 내용이 바뀌지 않았다면 이전에 연산한 값 재사용
+
+   return (
+      <div>
+         <button
+            onClick={() => {
+               setStr("안녕");
+               //문자를 변경했는데 getAddResult가 실행됨
+               // -> str의 상태가 변경되는 순간 str이라는 변수를 들고 있는 영역의 함수가 다시 return 됨
+               //문자 변경 시 getAddResult가 실행되지 않게 하려면? useMemo를 사용하기
+               //useMemo 사용 시, 버튼(문자변경)을 클릭해도 getAddResult가 실행되지 않음
+            }}>
+            문자변경
+         </button>
+         <button
+            onClick={() => {
+               setList([...list, 10]); //list의 값을 바꾸면 return이 다시 실행됨
+            }}>
+            리스트 값 추가
+         </button>
+         <div>
+            {list.map(i => (
+               <h1>{i}</h1>
+            ))}
+         </div>
+         <div>
+            {str} : {MemoUseResult}
+         </div>
+      </div>
+   );
+}
+
+function UseRefTest() {
+   //useRef (디자인)
+   //dom을 변경할 때 사용
+   const myRef = useRef(null);
+
+   const [list2, setList2] = useState([
+      {
+         id: 1,
+         name: "aaa",
+      },
+      {
+         id: 2,
+         name: "bbb",
+      },
+   ]);
+
+   const myRefArr = Array.from({ length: list2.length }).map(() => {
+      return createRef();
+   });
+   //Array.from({length:숫자 or length}) => 숫자 or length만큼의 빈 배열 생성
+   //.map(() => 넣고 싶은 값) => 넣고 싶은 값을 각 array에 넣어주기
+   //createRef() => ref를 동적으로 생성해주는 hook, myRef가 배열로 만들어짐
+
+   return (
+      <div>
+         <button
+            onClick={() => {
+               console.log(myRef);
+               console.log(myRef.current);
+               console.log(myRefArr);
+               //myRef.current.style.backgroundColor = "red"; //스타일 변경해보기
+               myRefArr[0].current.style.backgroundColor = "red"; //ref로 스타일 변경해보기
+            }}>
+            색 변경
+         </button>
+         <div ref={myRef}>박스</div>
+         {list2.map((member, id) => (
+            <p key={member.id} ref={myRefArr[id]}>
+               {member.name}
+            </p>
+         ))}
+      </div>
+   );
+}
+
+export { UseEffectTest, UseMemoMan, UseRefTest };
