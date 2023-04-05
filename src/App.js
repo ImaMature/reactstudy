@@ -1,6 +1,9 @@
 import "./App.css";
 
-import { UseEffectTest, UseMemoMan, UseRefTest } from "./Test";
+//import { UseEffectTest, UseMemoMan, UseRefTest } from "./Test";
+//import StyleCompsTest from "./Style_component";
+import "./App.css";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
    return (
@@ -9,8 +12,10 @@ function App() {
          <hr></hr>
          <UseMemoMan />
          <hr></hr>
-   */}
          <UseRefTest />
+         <StyleCompsTest />
+          */}
+         <LoginPage />
       </div>
    );
 }
